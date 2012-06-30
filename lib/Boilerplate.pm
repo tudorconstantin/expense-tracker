@@ -6,7 +6,7 @@ sub startup {
   my $self = shift;
 
   $self->secret("Very well hidden secret");
-  
+warn "GOT INC @INC";
   # Everything can be customized with options
   my $config = $self->plugin( yaml_config => {
         file      => 'conf/config.yaml',
