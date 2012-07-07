@@ -1,18 +1,3 @@
-# users (used for demo purposes)
-demo_users:
-# user_type
-  regular:
-# user object properties  
-    username: regular
-    first_name: John
-    last_name: Doe
-    user_type: regular
-  admin:
-    username: admin
-    first_name: God Like
-    last_name: anonymous
-    user_type: admin
-
 # application menu 
 app_menu:
   anonymous:
@@ -54,25 +39,5 @@ app_menu:
     04_about:
       text: About
       value: /user/about
-
-  admin:  
-    000_home:
-      text: Home
-      value: /
-    001_slide:
-      text: Cluj.PM Slide Photo Gallery
-      value: /clujpm_gallery/slide
-    002_grid:
-      text: Cluj.PM Grid Photo Gallery
-      value: /clujpm_gallery/grid
-    01_admin_menu:
-      text: Admin Menu
-      value: /admin/menu
-    03_logout:
-      text: Logout
-      value: /logout
-    04_about:
-      text: About
-      value: /admin/about
 
 google_analytics_code: UA-407609-8
