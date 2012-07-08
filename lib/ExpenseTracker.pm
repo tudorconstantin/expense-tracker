@@ -42,6 +42,11 @@ sub startup {
   # Routes
   my $r = $self->routes;
   
+  #set location for controllers
+  $r->namespace('ExpenseTracker::Controllers');
+  
+  $r->route('/')->to("site#welcome");
+  
   
 }
 
