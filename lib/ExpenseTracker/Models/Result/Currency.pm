@@ -82,4 +82,5 @@ __PACKAGE__->add_unique_constraint("name_unique", ["name"]);
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->has_many(operations => 'ExpenseTracker::Models::Result::Operation', 'currency_id');
 1;

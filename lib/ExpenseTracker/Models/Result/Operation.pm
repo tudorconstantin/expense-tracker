@@ -109,4 +109,11 @@ __PACKAGE__->set_primary_key("id");
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+__PACKAGE__->has_many(operations_category => 'ExpenseTracker::Models::Result::OperationsCategory', 'operation_id');
+__PACKAGE__->many_to_many(categories => 'operations_category', 'category');
+
+__PACKAGE__->belongs_to(user => 'ExpenseTracker::Models::Result::User', 'user_id');
+__PACKAGE__->belongs_to(currency => 'ExpenseTracker::Models::Result::Currency', 'currency_id');
+
 1;

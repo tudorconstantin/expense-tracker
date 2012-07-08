@@ -129,4 +129,8 @@ __PACKAGE__->add_unique_constraint("username_unique", ["username"]);
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+__PACKAGE__->has_many(categories => 'ExpenseTracker::Models::Result::Category', 'user_id');
+__PACKAGE__->has_many(operations => 'ExpenseTracker::Models::Result::Operation', 'user_id');
+
 1;
