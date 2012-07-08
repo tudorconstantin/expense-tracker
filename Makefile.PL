@@ -43,13 +43,16 @@ WriteMakefile(
 
   EXE_FILES => ['script/boilerplate'],
   PREREQ_PM => {
-    'Mojolicious'                     => '2.57',
+    'Mojolicious'                     => 0,
     'Mojolicious::Plugin::YamlConfig' => '0.1.3',
     'YAML'                            => 0,
     'YAML::XS'                        => 0,
     'File::Find'                      => 0,
     'Test::BDD::Cucumber'             => 0,
     'FindBin::libs'                   => 0,
+    'DBIx::Class'                     => '0.08196',
+    'DBI'                             => '1.622',
+    'DBD::SQLite'                     => '1.37',
   },
   test => {TESTS => 't/*.t t/*/*.t'}
 );
