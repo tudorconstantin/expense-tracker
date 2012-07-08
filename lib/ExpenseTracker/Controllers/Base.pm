@@ -35,9 +35,16 @@ sub list{
 sub show{
   my $self = shift;
   
-  my $result = { resource => $self->{resource} };
+  my @result = $self->app->model
+      ->resultset( $self->{resource} )
+      ->search_rs(
+          { id => $self->param('id') },
+          { result_class => 'DBIx::Class::ResultClass::HashRefInflator' },
+      )
+      ->all;  
   
-  return $self->render_json( $result );
+  return $self->render_not_found if ( scalar( @result == 0 ) );
+  return $self->render_json( [ @result ] );
 }
 
 sub remove{
