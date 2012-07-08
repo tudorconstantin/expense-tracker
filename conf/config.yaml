@@ -8,20 +8,12 @@ database:
     user:
     password:
 
-
-
 # application menu 
 app_menu:
   anonymous:
     000_home:
       text: Home
       value: /
-    001_slide:
-      text: Cluj.PM Slide Photo Gallery
-      value: /clujpm_gallery/slide
-    002_grid:
-      text: Cluj.PM Grid Photo Gallery
-      value: /clujpm_gallery/grid
     01_login:
       text: Log In
       value: /login
@@ -36,14 +28,8 @@ app_menu:
     000_home:
       text: Home
       value: /
-    001_slide:
-      text: Cluj.PM Slide Photo Gallery
-      value: /clujpm_gallery/slide
-    002_grid:
-      text: Cluj.PM Grid Photo Gallery
-      value: /clujpm_gallery/grid
     01_user_menu:
-      text: User Menu
+      text: My Account
       value: /user/menu
     03_logout:
       text: Logout
