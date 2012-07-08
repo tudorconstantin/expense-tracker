@@ -1,6 +1,7 @@
 package ExpenseTracker;
 use Mojo::Base 'Mojolicious';
 use ExpenseTracker::Models;
+use ExpenseTracker::Routes;
 
 # This method will run once at server start
 sub startup {
@@ -47,9 +48,27 @@ sub startup {
   
   $r->route('/')->to("site#welcome");
   
-  my $api_routes = $route->route('/api');
+  my $api_routes = $r->route('/api')->over( authenticated => 1 );
+
+  my $routes_params = {
+    app_routes            => $r,
+    api_base_url          => '/api',
+    controllers_namespace => 'ExpenseTracker::Controllers',
+    resource_names        => [ qw/category operation currency operations_category / ],
+  };
+  
+  ExpenseTracker::Routes->create_routes( $routes_params );
   
 }
 
+sub user{
+  my $self = shift;
+
+  return unless $self->{uid};
+  return $self->{user} if (defined($self->{user}) and $self->{user}->id() == $self->{uid} );
+  $self->{user} = $self->model->resultset('User')->find( $self->{uid} );
+  return $self->{user};
+  
+}
 
 1;
