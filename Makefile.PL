@@ -14,10 +14,10 @@ my ($mm) = $ExtUtils::MakeMaker::VERSION =~ /^([^_]+)/;
 # We only use core modules, so you shouldn't have to install anything besides
 # Perl 5.8.7!
 WriteMakefile(
-  NAME         => 'Mojolicious Boilerplate',
+  NAME         => 'Expense Tracker',
   VERSION      => '0.1',
-  ABSTRACT     => 'The Web In A Box!',
-  AUTHOR       => 'Tudor Constantin',
+  ABSTRACT     => 'POC for Mojolicious and Backbone.js',
+  AUTHOR       => 'Tudor Constantin & Andrei Ursan',
 
   ($mm < 6.3002 ? () : ('LICENSE' => 'artistic_2')),
 
@@ -25,12 +25,12 @@ WriteMakefile(
     ? ()
     : (
       META_MERGE => {
-        requires  => {perl => '5.008007'},
+        requires  => {perl => '5.0010'},
         resources => {
-          homepage    => 'http://github.com/tudorconstantin/Mojolicious-Boilerplate',
+          homepage    => 'https://github.com/tudorconstantin/expense-tracker',
           license     => 'http://dev.perl.org/licenses/',          
           repository  => 'http://github.com/tudorconstantin/Mojolicious-Boilerplate',
-          bugtracker  => 'http://github.com/tudorconstantin/Mojolicious-Boilerplate/issues'
+          bugtracker  => 'https://github.com/tudorconstantin/expense-tracker/issues'
         },
         no_index => {directory => [qw/t/]}
       },
