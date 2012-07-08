@@ -15,6 +15,7 @@ EOF
 
 # Application
 $ENV{MOJO_APP} ||= 'ExpenseTracker';
+$ENV{MOJO_MODE} ||= 'development';
 
 # Start commands
 Mojolicious::Commands->start;
