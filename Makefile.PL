@@ -41,7 +41,7 @@ WriteMakefile(
     )
   ),
 
-  EXE_FILES => ['script/boilerplate'],
+  EXE_FILES => ['script/expense-tracker'],
   PREREQ_PM => {
     'Mojolicious'                     => 0,
     'Mojolicious::Plugin::YamlConfig' => '0.1.3',
