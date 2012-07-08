@@ -44,7 +44,7 @@ WriteMakefile(
   EXE_FILES => ['script/expense-tracker'],
   PREREQ_PM => {
     'Mojolicious'                     => 0,
-    'Mojolicious::Plugin::YamlConfig' => '0.1.3',
+    'Mojolicious::Plugin::YamlConfig' => 0,
     'YAML'                            => 0,
     'YAML::XS'                        => 0,
     'File::Find'                      => 0,
