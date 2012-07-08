@@ -1,3 +1,11 @@
+database:
+  production:
+    dsn: dbi:SQLite:dbname=data/production/expense_tracker.sqlite
+  development:
+    dsn: dbi:SQLite:dbname=data/production/expense_tracker.sqlite
+
+
+
 # application menu 
 app_menu:
   anonymous:
