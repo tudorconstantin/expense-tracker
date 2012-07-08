@@ -50,9 +50,12 @@ WriteMakefile(
     'File::Find'                      => 0,
     'Test::BDD::Cucumber'             => 0,
     'FindBin::libs'                   => 0,
-    'DBIx::Class'                     => '0.08196',
-    'DBI'                             => '1.622',
-    'DBD::SQLite'                     => '1.37',
+    #'DBIx::Class'                     => '0.08196',
+    'DBIx::Class'                     => 0,
+    #'DBI'                             => '1.622',
+    'DBI'                             => 0,
+    #'DBD::SQLite'                     => '1.37',
+    'DBD::SQLite'                     => 0,
   },
   test => {TESTS => 't/*.t t/*/*.t'}
 );
