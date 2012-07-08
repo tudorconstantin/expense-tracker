@@ -1,3 +1,3 @@
 #!/usr/bin/perl
 
-require 'script/boilerplate';
+require 'script/expense-tracker';

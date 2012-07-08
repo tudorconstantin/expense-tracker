@@ -1,6 +1,5 @@
 blib/*
 cover_db/*
-Boilerplate/*
 log/*
 Makefile
 MYMETA.json
