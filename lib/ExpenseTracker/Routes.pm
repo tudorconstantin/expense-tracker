@@ -10,11 +10,9 @@ sub create_routes{
     
   $params->{app_routes}->add_shortcut(resource => sub {
     my ($r, $name ) = @_;
-
-    my $controller_name = ( $params->{controllers_namespace} || '') . Mojo::Util::camelize($name) ;
     
     # Generate "/$name" route
-    my $resource = $r->route( ( $params->{api_base_url} || '' )."/$name" )->to("$controller_name#");
+    my $resource = $r->route( ( $params->{api_base_url} || '' )."/$name" )->to("$name#");
 
     # Handle POST requests - creates a new resource
     $resource->post->to('#create')->name("create_$name");
@@ -22,7 +20,7 @@ sub create_routes{
     # Handle GET requests - lists the collection of this resource
     $resource->get->to('#list')->name("list_$name");
 
-    $resource = $r->route( ( $params->{api_base_url} || '' )."/$name/:id" )->to("$controller_name#");
+    $resource = $r->route( ( $params->{api_base_url} || '' )."/$name/:id" )->to("$name#");
     
     $resource->get->to('#show')->name("show_$name");
     $resource->delete->to('#remove')->name("delete_$name");
