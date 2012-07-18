@@ -4,15 +4,18 @@ use strict;
 use warnings;
 
 use Mojo::Base 'Mojolicious::Controller';
+use Mojo::JSON;
 
-
+use DBIx::Class::ResultClass::HashRefInflator;
 
 sub create{
   my $self = shift;
   
-  my $result;
-  
-  return $self->render_json( $result );
+  my $result = $self->app->model
+    ->resultset( $self->{resource} )    
+    ->create( $self->req->json );   
+
+  return $self->render_json( $result->{_column_data} );
 }
 
 sub update{
