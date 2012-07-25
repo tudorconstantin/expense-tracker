@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone){
 	App = {
     start: function(){          
-    	alert("apps start");
+    	console.log("apps start");
     }
   }
   return App;
