@@ -8,3 +8,11 @@ sub welcome{
 }
 
 1;
+
+__END__
+=pod
+ 
+=head1 NAME
+ExpenseTracker::Controllers::Site
+
+=cut

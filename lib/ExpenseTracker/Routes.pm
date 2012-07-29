@@ -57,3 +57,11 @@ sub _add_routes_authorization {
 }
 
 1;
+
+__END__
+=pod
+ 
+=head1 NAME
+ExpenseTracker::Routes - separate the routes adding from the main app module
+
+=cut

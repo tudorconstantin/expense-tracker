@@ -74,3 +74,12 @@ sub user{
 }
 
 1;
+
+__END__
+=pod
+ 
+=head1 NAME
+ExpenseTracker - main app file
+
+
+=cut
