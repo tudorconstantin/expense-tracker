@@ -3,6 +3,8 @@ use Mojo::Base 'Mojolicious';
 use ExpenseTracker::Models;
 use ExpenseTracker::Routes;
 
+# ABSTRACT: Demo app for showing the synergy between perl and javascript
+
 # This method will run once at server start
 sub startup {
   my $self = shift;
