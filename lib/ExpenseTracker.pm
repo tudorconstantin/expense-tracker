@@ -2,6 +2,8 @@ package ExpenseTracker;
 use Mojo::Base 'Mojolicious';
 use ExpenseTracker::Models;
 use ExpenseTracker::Routes;
+use Mojolicious::Plugin::Authentication;
+use Digest::MD5 qw(md5 md5_hex);
 
 # ABSTRACT: Demo app for showing the synergy between perl and javascript
 
@@ -33,14 +35,39 @@ sub startup {
       }
     );
   }
-  
+
+  $self->plugin(
+    'authentication' => {
+      'session_key' => 'wickedapp',
+      'load_user'   => sub {
+        my ( $app, $uid ) = @_;
+        my $schema = $self->app->model;                
+        return $schema->resultset('ExpenseTracker::Models::Result::User')->find($uid);          
+      },
+      'validate_user' => sub {
+        my ( $app, $username, $pass, $extra ) = @_;
+
+        my $schema = $self->app->model;
+        my $user =
+          $schema->resultset('ExpenseTracker::Models::Result::User')
+          ->search_rs( { username => $username, password => md5_hex($pass) } )
+          ->next();
+          
+        my $user_id;
+        $user_id = $user->id() if defined($user);
+        return $user_id;
+      },
+    }
+  );
+
   $self->hook(after_static_dispatch => sub {
     my $c = shift;
-    
+
+    $self->{uid} = $c->session->{wickedapp};
     $c->session->{_menu} = defined($c->session->{user})
                 ? $c->app->{config}->{app_menu}->{$c->session->{user}->{user_type} }
                 : $c->app->{config}->{app_menu}->{anonymous} ;
-   });  
+  });  
    
   # Routes
   my $r = $self->routes;
@@ -49,14 +76,19 @@ sub startup {
   $r->namespace('ExpenseTracker::Controllers');
   
   $r->route('/')->to("site#welcome");
-  
+
+  #routes to user controller
+  $r->route('/login')->to('login#login')->name('login');
+  $r->route('/logout')->to('login#logout')->name('logout');
+  $r->route('/authenticate')->to('login#auth')->name('authenticate');
+
   my $api_routes = $r->route('/api')->over( authenticated => 1 );
 
   my $routes_params = {
     app_routes            => $r,
     api_base_url          => '/api',
     controllers_namespace => 'ExpenseTracker::Controllers',
-    resource_names        => [ qw/category operation currency operations_category / ],
+    resource_names        => [ qw/category operation currency operations_category user / ],
   };
   
   ExpenseTracker::Routes->create_routes( $routes_params );
