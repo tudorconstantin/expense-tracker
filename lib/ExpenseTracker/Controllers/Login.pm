@@ -15,7 +15,7 @@ sub auth {
     $self->authenticate( $self->param('username'), $self->param('password') )
     )
   {
-    $self->redirect_to('/home');
+    $self->redirect_to('/');
   }
   else {
     push(
@@ -34,9 +34,22 @@ sub logout {
 
   $self->session( expires => 1 );
 
+  push(
+    @{ $self->session->{success_messages} },
+    'Good bye, hope to see you soon!!'
+  );
   $self->redirect_to('/');
 
   return;
 }
 
 1;
+
+__END__
+=pod
+ 
+=head1 NAME
+ExpenseTracker::Controllers::Login - Controller responsible for login/logout operations
+
+
+=cut

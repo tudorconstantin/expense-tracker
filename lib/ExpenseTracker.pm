@@ -88,7 +88,7 @@ sub startup {
     app_routes            => $r,
     api_base_url          => '/api',
     controllers_namespace => 'ExpenseTracker::Controllers',
-    resource_names        => [ qw/category operation currency operations_category / ],
+    resource_names        => [ qw/category operation currency operations_category user / ],
   };
   
   ExpenseTracker::Routes->create_routes( $routes_params );
