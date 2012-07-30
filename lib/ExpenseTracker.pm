@@ -42,14 +42,14 @@ sub startup {
       'load_user'   => sub {
         my ( $app, $uid ) = @_;
         my $schema = $self->app->model;                
-        return $schema->resultset('Food::Schema::Result::User')->find($uid);          
+        return $schema->resultset('ExpenseTracker::Models::Result::User')->find($uid);          
       },
       'validate_user' => sub {
         my ( $app, $username, $pass, $extra ) = @_;
 
         my $schema = $self->app->model;
         my $user =
-          $schema->resultset('Food::Schema::Result::User')
+          $schema->resultset('ExpenseTracker::Models::Result::User')
           ->search_rs( { username => $username, password => md5_hex($pass) } )
           ->next();
           
@@ -76,7 +76,12 @@ sub startup {
   $r->namespace('ExpenseTracker::Controllers');
   
   $r->route('/')->to("site#welcome");
-  
+
+  #routes to user controller
+  $r->route('/login')->to('login#login')->name('login');
+  $r->route('/logout')->to('login#logout')->name('logout');
+  $r->route('/authenticate')->to('login#auth')->name('authenticate');
+
   my $api_routes = $r->route('/api')->over( authenticated => 1 );
 
   my $routes_params = {
