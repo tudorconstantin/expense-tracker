@@ -2,6 +2,8 @@ package ExpenseTracker;
 use Mojo::Base 'Mojolicious';
 use ExpenseTracker::Models;
 use ExpenseTracker::Routes;
+use Mojolicious::Plugin::Authentication;
+use Digest::MD5 qw(md5 md5_hex);
 
 # ABSTRACT: Demo app for showing the synergy between perl and javascript
 
@@ -33,14 +35,39 @@ sub startup {
       }
     );
   }
-  
+
+  $self->plugin(
+    'authentication' => {
+      'session_key' => 'wickedapp',
+      'load_user'   => sub {
+        my ( $app, $uid ) = @_;
+        my $schema = $self->app->model;                
+        return $schema->resultset('Food::Schema::Result::User')->find($uid);          
+      },
+      'validate_user' => sub {
+        my ( $app, $username, $pass, $extra ) = @_;
+
+        my $schema = $self->app->model;
+        my $user =
+          $schema->resultset('Food::Schema::Result::User')
+          ->search_rs( { username => $username, password => md5_hex($pass) } )
+          ->next();
+          
+        my $user_id;
+        $user_id = $user->id() if defined($user);
+        return $user_id;
+      },
+    }
+  );
+
   $self->hook(after_static_dispatch => sub {
     my $c = shift;
-    
+
+    $self->{uid} = $c->session->{wickedapp};
     $c->session->{_menu} = defined($c->session->{user})
                 ? $c->app->{config}->{app_menu}->{$c->session->{user}->{user_type} }
                 : $c->app->{config}->{app_menu}->{anonymous} ;
-   });  
+  });  
    
   # Routes
   my $r = $self->routes;
