@@ -1,3 +1,6 @@
+api:
+  base_url: /api
+  
 database:
   production:
     dsn: dbi:SQLite:dbname=data/production/expense_tracker.sqlite
