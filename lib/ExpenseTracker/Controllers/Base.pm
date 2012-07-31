@@ -5,6 +5,7 @@ use warnings;
 
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::JSON;
+use Mojo::Util;
 
 use DBIx::Class::ResultClass::HashRefInflator;
 
@@ -56,10 +57,21 @@ sub show{
 }
 
 sub remove{
-  my $self = shift;
+  my $self = shift;  
   
-  my $result;
+  my $result_rs = $self->app->model
+      ->resultset( $self->{resource} )
+      ->search_rs(
+          { id => $self->param('id') },         
+      );
+
   
-  return $self->render_json( $result );
+  return $self->render_not_found if ( scalar( ( $result_rs->all ) ) == 0 );
+  
+  $result_rs->delete_all;
+  
+  my $resource_name = Mojo::Util::decamelize( ( split '::', $self->{resource} )[-1] );
+  return $self->redirect_to( $self->url_for( "list_$resource_name" ) ) ;
 }
 1;
+
