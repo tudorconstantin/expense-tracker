@@ -29,9 +29,14 @@ sub update{
 sub list{
   my $self = shift;  
     
-  my $result;
+  my $result = $self->app->model
+    ->resultset( $self->{resource} )
+    ->search_rs;
   
-  return $self->render_json( $result );
+  $result->result_class('DBIx::Class::ResultClass::HashRefInflator');
+
+  #TODO: paging for the records
+  return $self->render_json( [ $result->all() ] );
 }
 
 
