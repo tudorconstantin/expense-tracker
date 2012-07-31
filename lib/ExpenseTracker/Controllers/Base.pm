@@ -22,9 +22,21 @@ sub create{
 sub update{
   my $self = shift;
   
-  my $result;
+  my $result_rs = $self->app->model
+    ->resultset( $self->{resource} )
+    ->search_rs(
+        { id => $self->param('id') },         
+    );
   
-  return $self->render_json( $result );
+  return $self->render_not_found if ( scalar( ( $result_rs->all ) ) == 0 );
+  
+  #default - until implementing the generic default
+  $self->{_payload} ||= $self->req->json;
+  $result_rs->update_all( $self->{_payload} );
+  
+  $result_rs->result_class('DBIx::Class::ResultClass::HashRefInflator');
+  my @result = $result_rs->all();
+  return $self->render_json( @result );
 }
 
 sub list{
@@ -75,3 +87,10 @@ sub remove{
 }
 1;
 
+__END__
+=pod
+ 
+=head1 NAME
+ExpenseTracker::Controllers::Base - base controller that provides the generic RESTful actions for a resource
+
+=cut
