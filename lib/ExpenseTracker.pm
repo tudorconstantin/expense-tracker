@@ -86,7 +86,7 @@ sub startup {
 
   my $routes_params = {
     app_routes            => $r,
-    api_base_url          => '/api',
+    api_base_url          => $self->{config}->{api}->{base_url},
     controllers_namespace => 'ExpenseTracker::Controllers',
     resource_names        => [ qw/category operation currency operations_category user / ],
   };
