@@ -51,11 +51,10 @@ sub startup {
         my $user =
           $schema->resultset('ExpenseTracker::Models::Result::User')
           ->search_rs( { username => $username, password => md5_hex($pass) } )
-          ->next();
-          
-        my $user_id;
-        $user_id = $user->id() if defined($user);
-        return $user_id;
+          ->next();          
+        
+        $self->{uid} = $user->id() if defined($user);
+        return $self->{uid};
       },
     }
   );
@@ -64,8 +63,8 @@ sub startup {
     my $c = shift;
 
     $self->{uid} = $c->session->{wickedapp};
-    $c->session->{_menu} = defined($c->session->{user})
-                ? $c->app->{config}->{app_menu}->{$c->session->{user}->{user_type} }
+    $c->session->{_menu} = defined($c->app->user)
+                ? $c->app->{config}->{app_menu}->{regular}
                 : $c->app->{config}->{app_menu}->{anonymous} ;
   });  
    
@@ -97,8 +96,9 @@ sub startup {
 
 sub user{
   my $self = shift;
-
+  
   return unless $self->{uid};
+
   return $self->{user} if (defined($self->{user}) and $self->{user}->id() == $self->{uid} );
   $self->{user} = $self->model->resultset('User')->find( $self->{uid} );
   return $self->{user};

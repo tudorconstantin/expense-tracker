@@ -67,8 +67,8 @@
             <li><a href="<%= $self->session->{_menu}->{$menu_item}->{value} %>"><%= $self->session->{_menu}->{$menu_item}->{text} %></a></li>
 % }
          </ul>
-% if ( defined($self->session->{user} ) ){
-         <p class="navbar-text pull-right">Logged in as <a href="<%= $self->session->{user}->{profile_url} %>"><%= $self->session->{user}->{username} %></a></p>     
+% if ( defined($self->app->user ) ){
+         <p class="navbar-text pull-right">Logged in as <a href="<%= $self->url_for( "show_user", id => $self->app->user->id ) %>"><%= $self->app->user->username %></a></p>     
 %} else {
          <p class="navbar-text pull-right">You are not logged in</p> 
 %}
