@@ -1,6 +1,8 @@
 api:
   base_url: /api
-  
+
+expose_resources: category operation currency operations_category user
+
 database:
   production:
     dsn: dbi:SQLite:dbname=data/production/expense_tracker.sqlite

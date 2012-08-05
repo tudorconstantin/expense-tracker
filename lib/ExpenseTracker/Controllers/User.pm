@@ -12,6 +12,18 @@ sub new{
   
 }
 
+=head update
+  sample of overriding a default update method
+=cut
+sub update{
+  my $self = shift;
+  
+  return $self->render(status => 405,  json => {message => 'You can only update your own profile!!!'} )
+    if ( !defined $self->param('id') or !defined $self->app->user or $self->param('id') != $self->app->user->id );
+
+  return $self->SUPER::update(@_);
+}
+
 1;
 
 __END__
