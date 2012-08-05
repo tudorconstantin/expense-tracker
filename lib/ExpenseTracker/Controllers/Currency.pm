@@ -13,3 +13,12 @@ sub new{
 }
 
 1;
+
+__END__
+=pod
+ 
+=head1 NAME
+ExpenseTracker::Controllers::Currency - Controller responsible for the Currency resource
+
+
+=cut

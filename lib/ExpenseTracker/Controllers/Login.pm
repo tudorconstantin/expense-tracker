@@ -15,6 +15,10 @@ sub auth {
     $self->authenticate( $self->param('username'), $self->param('password') )
     )
   {
+    push(
+      @{ $self->session->{success_messages} },
+      sprintf('Welcome %s', $self->app->user->username)
+    );
     $self->redirect_to('/');
   }
   else {
