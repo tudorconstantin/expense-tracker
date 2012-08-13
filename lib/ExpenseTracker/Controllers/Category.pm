@@ -12,15 +12,46 @@ sub new{
   
 }
 
+sub show{
+  my $self = shift;
+
+  return $self->render(status => 405,  json => {message => 'You can only see your own categories!!!'} )
+    if ( !defined $self->param('id') or !defined $self->app->user or !scalar( $self->app->user->categories( id => $self->param('id') )->all ) );
+
+   my $result_rs = $self->app->model
+    ->resultset( $self->{resource} )
+    ->search_rs( {
+        user_id => $self->app->user->id,
+        id      => $self->param('id'),
+    } );
+  
+  my $result = [];  
+
+   while (my $categ = $result_rs->next){
+      push @$result, {
+        id          => $categ->id,
+        parent_id   => $categ->parent_id,
+        name        => $categ->name,
+        user_id     => $categ->user_id,
+        children    => [ $categ->children->get_column('id')->all ],
+      };
+   }
+  return $self->render_not_found() if scalar @$result == 0 ;
+  return $self->render_json( $result );
+}
+
+
 =head update
   sample of overriding a default update method
 =cut
 sub update{
   my $self = shift;
   
-  #return $self->render(status => 405,  json => {message => 'You can only update your own profile!!!'} )
-  #  if ( !defined $self->param('id') or !defined $self->app->user or $self->param('id') != $self->app->user->id );
-
+  return $self->render(status => 405,  json => {message => 'You can only update your own categories!!!'} )
+    if ( !defined $self->param('id') or !defined $self->app->user or !scalar( $self->app->user->categories( id => $self->param('id') )->all ) );
+    
+  $self->{_payload}->{user_id} = $self->app->user->id;
+  
   return $self->SUPER::update(@_);
 }
 
