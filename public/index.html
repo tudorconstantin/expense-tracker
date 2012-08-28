@@ -45,12 +45,27 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span4 categories">
+          <h2>Categories</h2>
 
-      <h1>Welcome to the Mojolicious real-time web framework!</h1>
-      <p>This is the static document "public/index.html".</p>
-
-    </div> <!-- /container -->
+        </div>
+        <div id="data-container" class="span8">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Amount</th>
+                <th>Expense</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody id="expenses-container">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
