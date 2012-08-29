@@ -88,6 +88,7 @@ sub startup {
     api_base_url          => $self->{config}->{api}->{base_url},
     controllers_namespace => 'ExpenseTracker::Controllers',
     resource_names        => [ split ' ', $self->{config}->{expose_resources} ],
+    app                   => $self,
   };
   
   ExpenseTracker::Routes->create_routes( $routes_params );
