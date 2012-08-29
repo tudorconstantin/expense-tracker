@@ -8,6 +8,8 @@ use Mojo::JSON;
 use Mojo::Util;
 
 use DBIx::Class::ResultClass::HashRefInflator;
+use Lingua::EN::Inflect qw/PL/;
+
 
 sub new{
   my $self = shift;
@@ -91,7 +93,7 @@ sub remove{
   $result_rs->delete_all;
   
   my $resource_name = Mojo::Util::decamelize( ( split '::', $self->{resource} )[-1] );
-  return $self->redirect_to( $self->url_for( "list_$resource_name" ) ) ;
+  return $self->redirect_to( $self->url_for( 'list_'.PL( $resource_name ) ) ) ;
 }
 
 sub _after_init{
