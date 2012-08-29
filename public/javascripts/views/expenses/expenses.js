@@ -1,9 +1,10 @@
 define([
   'jquery',
+  'underscore',
   'backbone',
   'views/expenses/expense',
   'text!templates/expenses/index.html'
-], function($, Backbone, ExpenseView, listTemplate){
+], function($, _, Backbone, ExpenseView, listTemplate){
     var ExpensesView = Backbone.View.extend({
       initialize: function(options) {
         var self = this;

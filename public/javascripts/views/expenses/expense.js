@@ -1,8 +1,9 @@
 define([
   'jquery',
+  'underscore',
   'backbone',
   'text!templates/expenses/expense.html'
-], function($, Backbone, listItem){
+], function($, _, Backbone, listItem){
   var ExpenseView = Backbone.View.extend({
     tagName: 'tr',
 

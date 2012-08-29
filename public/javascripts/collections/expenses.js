@@ -1,7 +1,9 @@
 define([
+  'jquery',
+  'underscore',
   'backbone',
   'models/expense'
-], function(Backbone, expense){
+], function($, _, Backbone, expense){
   var Expenses = Backbone.Collection.extend({
     model: expense,
 

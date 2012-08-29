@@ -1,9 +1,10 @@
 define([
   'jquery',
+  'underscore',
   'backbone',
   'routers/expenses_router',
   'bootstrap'
-], function($, Backbone, ExpensesRouter){
+], function($, _, Backbone, ExpensesRouter){
 	App = {
     start: function(){          
     	console.log("apps start");

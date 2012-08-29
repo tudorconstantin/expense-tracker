@@ -8,5 +8,8 @@ pm_to_blib
 Expense-Tracker*
 .build/*
 
+# other tools 
+.rb
+
 # OS X Stuff
 .DS_Store

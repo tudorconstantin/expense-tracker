@@ -8,7 +8,7 @@ require.config({
     bootstrap:  'vendor/bootstrap/bootstrap.min',
 
     text:       'vendor/require/text',
-    templates:  'templates/',
+    // templates:  'templates/',
     jqueryui:   'vendor/jquery/jquery-ui-1.8.21.custom.min'
   },
   
