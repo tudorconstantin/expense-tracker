@@ -25,7 +25,6 @@ define([
         self.collection.models.forEach(function(expense) {
           var expenseView = new ExpenseView({model: expense});
           $('#expenses-container').append(expenseView.render().el);
-          console.log(expenseView.render().el);
         });
  
         return self;   

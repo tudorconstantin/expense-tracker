@@ -15,7 +15,6 @@ define([
       var self = this;
       self.template = _.template(listItem);
       self.model = options.model;
-      console.log("expense view");
     },
 
     showDescription: function() {
@@ -26,7 +25,6 @@ define([
       var self = this;
       var renderContent = self.template({model: self.model});
       $(self.el).html(renderContent);
-      
       return self;
     }
 
