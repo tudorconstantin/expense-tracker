@@ -5,16 +5,17 @@ define([
   'text!templates/expenses/expense.html'
 ], function($, _, Backbone, listItem){
   var ExpenseView = Backbone.View.extend({
+    
     tagName: 'tr',
-
     events:{
       'click': 'showDescription'
     },
 
-    initialize: function(){
+    initialize: function(options){
       var self = this;
-      self.model.on('change', this.render, this);
       self.template = _.template(listItem);
+      self.model = options.model;
+      console.log("expense view");
     },
 
     showDescription: function() {
@@ -22,9 +23,11 @@ define([
     },
 
     render: function(){
-      var renderContent = this.template({model: this.model});
-      $(this.el).html(renderContent);
-      return this;
+      var self = this;
+      var renderContent = self.template({model: self.model});
+      $(self.el).html(renderContent);
+      
+      return self;
     }
 
   });

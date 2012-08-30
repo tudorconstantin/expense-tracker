@@ -7,19 +7,21 @@ define([
 ], function($, _, Backbone, ExpenseView, listTemplate){
     var ExpensesView = Backbone.View.extend({
 
-      initialize: function(options) {
+      initialize: function() {
         var self = this;
+
         self.template = _.template(listTemplate);
 
         this.collection.bind('reset', function() {
           console.log("Reset Expenses - Done, rendering will be triggered");
           self.render();
         });
+
       },
       
       render: function() {
         var self = this;
-       
+
         self.collection.models.forEach(function(expense) {
           var expenseView = new ExpenseView({model: expense});
           $('#expenses-container').append(expenseView.render().el);

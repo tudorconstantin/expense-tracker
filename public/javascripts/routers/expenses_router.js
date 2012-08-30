@@ -22,8 +22,6 @@ define([
           
           var expenses = new Expenses(this.data);
           this.expensesView = new ExpensesView({collection: expenses});
-          console.log("expenses view");
-          console.log(this.expensesView.collection.models);
           this.expensesView.render();
         },
 

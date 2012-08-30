@@ -4,7 +4,7 @@ define([
   'backbone'
 ], function($, _,Backbone) {
   var Expense = Backbone.Model.extend({
-    urlRoot: 'expense'
+    //urlRoot: 'expense'
   });	
   return Expense;
 });
