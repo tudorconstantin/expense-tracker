@@ -15,11 +15,13 @@ define([
         // },
 
         initialize: function(){
-          this.data =[{name: "Shampoo1", price: 100, description: "lorem ipsum dolo descrip"},
-                     {name: "Shampoo2", price: 112, description: "lorem ipsum dolo descrip"},
-                     {name: "Shampoo3", price: 10, description: "lorem ipsum dolo descrip"},
-                     {name: "Shampoo4", price: 89, description: "lorem ipsum dolo descrip"},
-                     {name: "Shampoo5", price: 74, description: "lorem ipsum dolo descrip"}];
+          this.data =[
+                       {name: "Shampoo1", price: 100, description: "lorem ipsum dolo descrip"},
+                       {name: "Shampoo2", price: 112, description: "lorem ipsum dolo descrip"},
+                       {name: "Shampoo3", price: 10, description: "lorem ipsum dolo descrip"},
+                       {name: "Shampoo4", price: 89, description: "lorem ipsum dolo descrip"},
+                       {name: "Shampoo5", price: 74, description: "lorem ipsum dolo descrip"}
+                     ];
           
           var expenses = new ExpensesCollection(this.data});
           this.expensesView = new ExpensesView({collection: expenses});
