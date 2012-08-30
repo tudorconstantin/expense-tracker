@@ -9,9 +9,9 @@ define([
 
     url: "expenses",
 
-    initialize: function() {
+    // initialize: function() {
 
-    },
+    // },
 
     expenseCreate: function(data) {
       // TBD

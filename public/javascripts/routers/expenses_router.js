@@ -4,15 +4,12 @@ define([
   'backbone',
   'collections/expenses',
   'views/expenses/expenses'
-], function($, _, Backbone, ExpensesCollection, ExpensesView){
+], function($, _, Backbone, Expenses, ExpensesView){
     var ExpensesRouter = Backbone.Router.extend({
         
-        // routes:{
-        //     ''                     : 'defaultRoute',
-        //     '/'                    : 'defaultRoute',
-        //     'expenses'             : 'select',
-        //     'expenses/:expense_id' : 'select'
-        // },
+        routes:{
+            'expenses/:expense_id' : 'select'
+        },
 
         initialize: function(){
           this.data =[
@@ -23,18 +20,19 @@ define([
                        {name: "Shampoo5", price: 74, description: "lorem ipsum dolo descrip"}
                      ];
           
-          var expenses = new ExpensesCollection(this.data});
+          var expenses = new Expenses(this.data);
           this.expensesView = new ExpensesView({collection: expenses});
           console.log("expenses view");
           console.log(this.expensesView.collection.models);
           this.expensesView.render();
-        }
+        },
 
-        //select: function(server_id){
+        select: function(expense_id){
           //this.expensesView.collection.fetch();
           //$('#content-body').html(this.serversView.el);
           //this.expensesView.delegateEvents(); 
-        //},
+
+        }
 
         // defaultRoute: function(){
         //   Backbone.history.navigate("expenses", true);
