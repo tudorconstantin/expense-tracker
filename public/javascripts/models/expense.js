@@ -1,12 +1,10 @@
 define([
-	'jquery',
+  'jquery',
   'underscore',
   'backbone'
 ], function($, _,Backbone) {
   var Expense = Backbone.Model.extend({
-    urlRoot: 'expense',
-    initialize: function() {
-
+    urlRoot: 'expense'
   });	
   return Expense;
 });

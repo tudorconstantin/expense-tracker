@@ -2,8 +2,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'collection/expenses',
-  'views/expenses/expenses',
+  'collections/expenses',
+  'views/expenses/expenses'
 ], function($, _, Backbone, ExpensesCollection, ExpensesView){
     var ExpensesRouter = Backbone.Router.extend({
         
@@ -20,10 +20,13 @@ define([
                      {name: "Shampoo3", price: 10, description: "lorem ipsum dolo descrip"},
                      {name: "Shampoo4", price: 89, description: "lorem ipsum dolo descrip"},
                      {name: "Shampoo5", price: 74, description: "lorem ipsum dolo descrip"}];
-          var expenses = new ExpensesCollection({models: this.data});
+          
+          var expenses = new ExpensesCollection(this.data});
           this.expensesView = new ExpensesView({collection: expenses});
+          console.log("expenses view");
+          console.log(this.expensesView.collection.models);
           this.expensesView.render();
-        },
+        }
 
         //select: function(server_id){
           //this.expensesView.collection.fetch();
@@ -36,5 +39,7 @@ define([
         // }
         
     });
-  return ExpensesRouter;
+
+    return ExpensesRouter;
+
 });

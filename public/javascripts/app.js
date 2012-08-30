@@ -5,13 +5,15 @@ define([
   'routers/expenses_router',
   'bootstrap'
 ], function($, _, Backbone, ExpensesRouter){
-	App = {
+	var App = {
     start: function(){          
-    	console.log("apps start");
-      var serverRouter = new ExpensesRouter;
+    	
+      console.log("apps start");
+
+      var expensesRouter = new ExpensesRouter;
 
       Backbone.history.start();
     }
-  }
+  };
   return App;
 });

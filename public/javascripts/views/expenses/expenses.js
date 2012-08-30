@@ -6,6 +6,7 @@ define([
   'text!templates/expenses/index.html'
 ], function($, _, Backbone, ExpenseView, listTemplate){
     var ExpensesView = Backbone.View.extend({
+
       initialize: function(options) {
         var self = this;
         self.template = _.template(listTemplate);
@@ -18,16 +19,16 @@ define([
       
       render: function() {
         var self = this;
-        if (self.collection.models != null){
+       
         self.collection.models.forEach(function(expense) {
-          var expenseView = new DiskView({model: expense});
+          var expenseView = new ExpenseView({model: expense});
           $('#expenses-container').append(expenseView.render().el);
           console.log(expenseView.render().el);
         });
-        };
-
+ 
         return self;   
       }
+      
     });
     return ExpensesView;
 });
