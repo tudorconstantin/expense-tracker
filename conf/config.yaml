@@ -12,6 +12,10 @@ database:
     dsn: dbi:SQLite:dbname=data/production/expense_tracker.sqlite
     user:
     password:
+  test:
+    dsn: dbi:SQLite:dbname=data/test/expense_tracker.sqlite
+    user:
+    password:  
 
 # application menu 
 app_menu:

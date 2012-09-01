@@ -5,6 +5,7 @@
  use Test::More;
  use FindBin::libs;
 
+ $ENV{MOJO_MODE} = 'test';
  # This will find step definitions and feature files in the directory you point
  # it at below
  use Test::BDD::Cucumber::Loader;
