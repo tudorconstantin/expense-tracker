@@ -13,15 +13,6 @@ sub new{
   
 }
 
-sub create{
-  my $self = shift;
-  
-  my $dt = DateTime->now;
-  $self->{_payload}->{created_at} = ''.$dt;
-  
-  $self->SUPER::create(@_);
-}
-
 1;
 
 __END__
