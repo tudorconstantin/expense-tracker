@@ -11,9 +11,10 @@ Feature: Simple Mojolicious Application Testing
     Then I should see the "Log In" url
     And I should see the "You are not logged in" text
     
-  Scenario: Being able to login
+  Scenario: Go to login page
     When I go to "login"
     Then I should see the "username" input
     And I should see the "password" input
     And I should see the "login" button
+
   
