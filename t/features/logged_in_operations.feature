@@ -16,5 +16,7 @@ Feature: Operations as a logged in user
       |RON|
       |CAD|
     When I create them through the REST API
-    Then I should be able to see their names
+    Then I should be able to list their names
+     And I should be able to get their ids
+     And I should be able to delete them
 
