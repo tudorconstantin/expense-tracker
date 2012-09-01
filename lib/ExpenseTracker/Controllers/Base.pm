@@ -74,7 +74,7 @@ sub show{
       )
       ->first;  
   
-  return $self->render_not_found if ( scalar( @result == 0 ) );
+  return $self->render_not_found if ( ref $result eq 'HASHREF' );
   return $self->render_json( $result );
 }
 
