@@ -1,5 +1,7 @@
 use Mojo::Base -strict;
 
+use FindBin::libs;
+
 use Test::More tests => 5;
 use Test::Mojo;
 
