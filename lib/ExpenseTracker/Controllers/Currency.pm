@@ -1,5 +1,6 @@
 package ExpenseTracker::Controllers::Currency;
 use Mojo::Base 'ExpenseTracker::Controllers::Base';
+use DateTime;
 
 sub new{
   my $self = shift;
@@ -10,6 +11,15 @@ sub new{
 
   return $obj;
   
+}
+
+sub create{
+  my $self = shift;
+  
+  my $dt = DateTime->now;
+  $self->{_payload}->{created_at} = ''.$dt;
+  
+  $self->SUPER::create(@_);
 }
 
 1;
