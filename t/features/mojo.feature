@@ -4,7 +4,7 @@ Feature: Simple Mojolicious Application Testing
   In order to be even lazier than I currently am
   
   Background:
-    Given a mojo test object for the "Boilerplate" application
+    Given a mojo test object for the "ExpenseTracker" application
     
   Scenario: Start as logged out
     When I go to "home"
