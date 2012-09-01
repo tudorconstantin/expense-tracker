@@ -21,11 +21,9 @@
  };
  
  When qr/I go to "(.+)"/, func ($c) {
-    my $route_url = '';
-    foreach my $route ( @{ $c->stash->{feature}->{tm}->app->routes()->children } ) {      
-      $route_url = $route->pattern->pattern and last if $route->name eq $1;
-    }    
-    $c->stash->{'feature'}->{'tm'}->get_ok($route_url);
+    # $1 matches a word - that word is a url name and passed as param to the url_for method
+    # thus, we should get a named url
+    $c->stash->{'feature'}->{'tm'}->get_ok(  $c->stash->{feature}->{tm}->app->url_for( $1 ) );
  };
  
  Then qr/I should see the "(.+)"\s+(.+)$/, func ($c) {

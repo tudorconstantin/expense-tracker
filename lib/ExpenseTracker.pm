@@ -74,7 +74,7 @@ sub startup {
   #set location for controllers
   $r->namespace('ExpenseTracker::Controllers');
   
-  $r->route('/')->to("site#welcome");
+  $r->route('/')->to("site#welcome")->name('home');
 
   #routes to user controller
   $r->route('/login')->to('login#login')->name('login');
