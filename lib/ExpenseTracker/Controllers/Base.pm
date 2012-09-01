@@ -6,6 +6,7 @@ use warnings;
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::JSON;
 use Mojo::Util;
+use DateTime;
 
 use DBIx::Class::ResultClass::HashRefInflator;
 use Lingua::EN::Inflect qw/PL/;
@@ -23,6 +24,8 @@ sub new{
 
 sub create{
   my $self = shift;
+  
+  $self->_before_create( @_ );
   
   my $result = $self->app->model
     ->resultset( $self->{resource} )    
@@ -101,6 +104,23 @@ sub _after_init{
   
   $self->{_payload} ||= ( $self->req->json or '' );
 
+}
+
+sub _before_create{
+  my $self = shift;
+  
+  my $now = DateTime->now ;
+  
+  $self->{_payload}->{created_at} = ''.$now if ( 'created_at' ~~ [ $self->app->model->resultset( $self->{resource} )->result_source->columns ] );  
+  $self->{_payload}->{updated_at} = ''.$now if ( 'updated_at' ~~ [ $self->app->model->resultset( $self->{resource} )->result_source->columns ] );
+}
+
+sub _before_update{
+my $self = shift;
+  
+  my $now = DateTime->now ;  
+  
+  $self->{_payload}->{updated_at} = ''.$now if ( 'updated_at' ~~ [ $self->app->model->resultset( $self->{resource} )->result_source->columns ] );
 }
 
 1;
