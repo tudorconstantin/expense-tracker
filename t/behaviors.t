@@ -4,7 +4,18 @@
  use warnings;
  use Test::More;
  use FindBin::libs;
+ use Test::Mojo;
 
+ $ENV{MOJO_MODE} = 'test';
+ 
+ #deploy an empty DB
+ use_ok 'ExpenseTracker';
+
+  my $t = Test::Mojo->new('ExpenseTracker');
+  ok($t, 'Created the Mojo App');
+  $t->app->model->deploy( { add_drop_table => 1 } );
+  note 'Created empty db';
+ 
  # This will find step definitions and feature files in the directory you point
  # it at below
  use Test::BDD::Cucumber::Loader;
