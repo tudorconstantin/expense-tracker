@@ -74,12 +74,12 @@ sub startup {
   #set location for controllers
   $r->namespace('ExpenseTracker::Controllers');
   
-  $r->route('/')->to("site#welcome");
+  $r->route('/')->to("site#welcome")->name('home');
 
   #routes to user controller
   $r->route('/login')->to('login#login')->name('login');
   $r->route('/logout')->to('login#logout')->name('logout');
-  $r->route('/authenticate')->to('login#auth')->name('authenticate');
+  $r->route('/authenticate')->to('login#auth')->name('authenticate_html');
 
   my $api_routes = $r->route('/api')->over( authenticated => 1 );
 
