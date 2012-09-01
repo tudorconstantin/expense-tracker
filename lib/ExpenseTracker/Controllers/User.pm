@@ -1,5 +1,6 @@
 package ExpenseTracker::Controllers::User;
 use Mojo::Base 'ExpenseTracker::Controllers::Base';
+use Digest::MD5 qw(md5_hex);
 
 sub new{
   my $self = shift;
@@ -22,6 +23,12 @@ sub update{
     if ( !defined $self->param('id') or !defined $self->app->user or $self->param('id') != $self->app->user->id );
 
   return $self->SUPER::update(@_);
+}
+
+sub _before_create{
+  my $self = shift;
+  
+  $self->{_payload}->{password} = Digest::MD5::md5_hex( $self->{_payload}->{password} );
 }
 
 1;

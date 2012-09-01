@@ -5,6 +5,8 @@ use FindBin::libs;
 use Test::More tests => 5;
 use Test::Mojo;
 
+$ENV{MOJO_MODE} = 'test';
+
 use_ok 'ExpenseTracker';
 
 my $t = Test::Mojo->new('ExpenseTracker');
