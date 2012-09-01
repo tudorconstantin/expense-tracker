@@ -10,12 +10,10 @@ Feature: Simple Mojolicious Application Testing
     When I go to "home"
     Then I should see the "Log In" url
     And I should see the "You are not logged in" text
-    And I should see the "Mojolicious\\s+and\\s+Bootstrap" text
     
   Scenario: Being able to login
     When I go to "login"
-    Then I should see the "Logout" url
-    And I should see the "Logged\\s+in\\s+as" text
-    And I should see the "Mojolicious\\s+and\\s+Bootstrap" text
-
+    Then I should see the "username" input
+    And I should see the "password" input
+    And I should see the "login" button
   
