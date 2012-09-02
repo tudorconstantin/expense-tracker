@@ -16,7 +16,7 @@ sub show{
   my $self = shift;
 
   return $self->render(status => 405,  json => {message => 'You can only see your own categories!!!'} )
-    if ( !defined $self->param('id') or !defined $self->app->user or !scalar( $self->app->user->categories( id => $self->param('id') )->all ) );
+    if ( !defined $self->param('id') or !defined $self->app->user or !scalar( $self->app->user->categories( { id => $self->param('id') } )->all ) );
 
    my $result_rs = $self->app->model
     ->resultset( $self->{resource} )
@@ -37,7 +37,7 @@ sub show{
       };
    }
   return $self->render_not_found() if scalar @$result == 0 ;
-  return $self->render_json( $result );
+  return $self->render_json( $result->[0] );
 }
 
 
@@ -53,6 +53,14 @@ sub update{
   $self->{_payload}->{user_id} = $self->app->user->id;
   
   return $self->SUPER::update(@_);
+}
+
+sub _before_create{
+  my $self = shift;
+  
+  $self->{_payload}->{user_id} = $self->app->user->id;
+  
+  return $self->SUPER::_before_create(@_);
 }
 
 sub list{
