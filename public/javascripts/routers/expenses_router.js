@@ -12,17 +12,20 @@ define([
         },
 
         initialize: function(){
-          this.data =[
-                       {name: "Shampoo1", price: 100, description: "lorem ipsum dolo descrip"},
-                       {name: "Shampoo2", price: 112, description: "lorem ipsum dolo descrip"},
-                       {name: "Shampoo3", price: 10, description: "lorem ipsum dolo descrip"},
-                       {name: "Shampoo4", price: 89, description: "lorem ipsum dolo descrip"},
-                       {name: "Shampoo5", price: 74, description: "lorem ipsum dolo descrip"}
-                     ];
           
-          var expenses = new Expenses(this.data);
-          this.expensesView = new ExpensesView({collection: expenses});
-          this.expensesView.render();
+          var expenses = new Expenses(),
+              self     = this;
+          
+          
+          expenses.fetch( {
+            success : function(){
+              self.expensesView = new ExpensesView({collection: expenses});
+              self.expensesView.render();
+              console.log('success in fetching data', expenses.models);
+            }
+          } );
+          
+
         },
 
         select: function(expense_id){
