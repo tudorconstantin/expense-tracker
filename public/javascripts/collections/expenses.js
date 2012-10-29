@@ -7,10 +7,10 @@ define([
   var Expenses = Backbone.Collection.extend({
     model: expense,
 
-    url: "expenses",
+    url: "/api/operations",
 
     initialize: function() {
-
+      console.log('should fetch expenses');
     },
 
     expenseCreate: function(data) {

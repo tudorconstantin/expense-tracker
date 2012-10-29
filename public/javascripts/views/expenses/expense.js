@@ -18,11 +18,13 @@ define([
     },
 
     showDescription: function() {
+      console.log('should show description', this.model.attributes.name);
       // TBD              
     },
 
     render: function(){
       var self = this;
+      console.log('rendering view expense.js');
       var renderContent = self.template({model: self.model});
       $(self.el).html(renderContent);
       return self;
