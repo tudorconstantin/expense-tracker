@@ -111,6 +111,8 @@ sub _before_create{
   
   my $now = DateTime->now ;
   
+  return $self->render( status => 400,  json => {message => 'Bad Request ( malformed JSON ? ) '} ) unless $self->{_payload};
+  
   $self->{_payload}->{created_at} = ''.$now if ( 'created_at' ~~ [ $self->app->model->resultset( $self->{resource} )->result_source->columns ] );  
   $self->{_payload}->{updated_at} = ''.$now if ( 'updated_at' ~~ [ $self->app->model->resultset( $self->{resource} )->result_source->columns ] );
 }
