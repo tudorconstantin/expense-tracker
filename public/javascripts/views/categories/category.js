@@ -2,11 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/categories/categories.html'
+  'text!templates/categories/category.html'
 ], function($, _, Backbone, listItem){
   var CategoryView = Backbone.View.extend({
     
-    tagName: 'tr',
+    tagName: 'li',
     events:{
       'click': 'showDescription'
     },
