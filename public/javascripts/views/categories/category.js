@@ -2,9 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/expenses/expense.html'
+  'text!templates/categories/categories.html'
 ], function($, _, Backbone, listItem){
-  var ExpenseView = Backbone.View.extend({
+  var CategoryView = Backbone.View.extend({
     
     tagName: 'tr',
     events:{
@@ -18,13 +18,13 @@ define([
     },
 
     showDescription: function() {
-      console.log('should show description', this.model.get('name') );
+      console.log('should show description', this.model.attributes.name);
       // TBD              
     },
 
     render: function(){
       var self = this;
-      
+      console.log('rendering view expense.js');
       var renderContent = self.template({model: self.model});
       $(self.el).html(renderContent);
       return self;
@@ -32,5 +32,5 @@ define([
 
   });
 
-  return ExpenseView;
+  return CategoryView;
 });
