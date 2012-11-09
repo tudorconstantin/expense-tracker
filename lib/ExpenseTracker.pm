@@ -80,6 +80,7 @@ sub startup {
   $r->route('/login')->to('login#login')->name('login');
   $r->route('/logout')->to('login#logout')->name('logout');
   $r->route('/authenticate')->to('login#auth')->name('authenticate_html');
+  $r->route('/categories/:category_id/expenses')->to('operation#list_by_category')->name('expenses_by_category');
 
   my $api_routes = $r->route('/api')->over( authenticated => 1 );
 

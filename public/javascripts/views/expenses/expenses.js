@@ -21,15 +21,16 @@ define([
       
       render: function() {
         var self = this;
-
+        
+        $('#expenses-container').html('');
+        
         self.collection.models.forEach(function(expense) {
           var expenseView = new ExpenseView({model: expense});
           $('#expenses-container').append(expenseView.render().el);
         });
  
         return self;   
-      }
-      
+      },
     });
     return ExpensesView;
 });

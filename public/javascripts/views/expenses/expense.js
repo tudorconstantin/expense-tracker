@@ -25,6 +25,8 @@ define([
     render: function(){
       var self = this;
       
+      $(this.el).empty();
+      
       var renderContent = self.template({model: self.model});
       $(self.el).html(renderContent);
       return self;
