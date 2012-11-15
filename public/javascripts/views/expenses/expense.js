@@ -2,8 +2,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/expenses/expense.html'
-], function($, _, Backbone, listItem){
+  'text!templates/expenses/expense.html'  
+], function($, _, Backbone, listItem, formItem){
   var ExpenseView = Backbone.View.extend({
     
     tagName: 'tr',
@@ -13,7 +13,7 @@ define([
 
     initialize: function(options){
       var self = this;
-      self.template = _.template(listItem);
+      self.template = _.template(listItem);      
       self.model = options.model;
     },
 
@@ -30,7 +30,9 @@ define([
       var renderContent = self.template({model: self.model});
       $(self.el).html(renderContent);
       return self;
-    }
+    },
+    
+
 
   });
 

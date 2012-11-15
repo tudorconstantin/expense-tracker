@@ -2,35 +2,48 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'models/expense',
   'views/expenses/expense',
-  'text!templates/expenses/index.html'
-], function($, _, Backbone, ExpenseView, listTemplate){
+  'text!templates/expenses/index.html',
+  'text!templates/expenses/expense_form.html'
+], function($, _, Backbone, ExpenseModel, ExpenseView, listTemplate, expenseForm){
     var ExpensesView = Backbone.View.extend({
 
-      initialize: function() {
-        var self = this;
+    initialize: function() {
+      var self = this;
 
-        self.template = _.template(listTemplate);
-
-        this.collection.bind('reset', function() {
-          console.log("Reset Expenses - Done, rendering will be triggered");
-          self.render();
-        });
-
-      },
+      self.template = _.template(listTemplate);
+      self.formNew = _.template(expenseForm);
       
-      render: function() {
-        var self = this;
-        
-        $('#expenses-container').html('');
-        
-        self.collection.models.forEach(function(expense) {
-          var expenseView = new ExpenseView({model: expense});
-          $('#expenses-container').append(expenseView.render().el);
-        });
- 
-        return self;   
-      },
+      this.collection.bind('reset', function() {        
+        self.render();
+      });
+
+    },
+    
+    render: function() {
+      var self = this;
+      
+      $('#expenses-container').html('');
+      
+      self.collection.models.forEach(function(expense) {        
+        var expenseView = new ExpenseView({model: expense});
+        $('#expenses-container').append(expenseView.render().el);
+      });
+
+      return self;   
+    },
+    
+    showFormNew: function() {
+      var self = this;
+      
+      var model = new ExpenseModel();
+      var renderContent = self.formNew({model: model});
+      $("#newExpenseContainer").html(renderContent);
+      $('#newExpenseContainer').modal();
+      console.log('rendered form', renderContent);
+    }
+    
     });
     return ExpensesView;
 });
