@@ -10,7 +10,7 @@ define([
     url: "/api/operations",
 
     initialize: function() {
-      console.log('should fetch expenses');
+      
     },
 
     expenseCreate: function(data) {
