@@ -31,7 +31,7 @@ define([
         },
         
         newExpense: function(){
-            console.log('hello');
+            
             var expenses = new Expenses();
             self.expenseForm = new ExpensesView( {collection: expenses} );
             self.expenseForm.showFormNew();

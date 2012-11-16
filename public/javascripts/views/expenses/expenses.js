@@ -41,7 +41,7 @@ define([
       var renderContent = self.formNew({model: model});
       $("#newExpenseContainer").html(renderContent);
       $('#newExpenseContainer').modal();
-      console.log('rendered form', renderContent);
+      
     }
     
     });
